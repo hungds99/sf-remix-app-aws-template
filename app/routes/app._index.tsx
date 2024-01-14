@@ -1,24 +1,25 @@
-import { useEffect } from "react";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useActionData, useNavigation, useSubmit } from "@remix-run/react";
 import {
-  Page,
-  Layout,
-  Text,
-  Card,
-  Button,
   BlockStack,
   Box,
-  List,
-  Link,
+  Button,
+  Card,
   InlineStack,
+  Layout,
+  Link,
+  List,
+  Page,
+  Text,
 } from "@shopify/polaris";
+import { useEffect } from "react";
 import { authenticate } from "../shopify.server";
+import { getSession } from "~/sessions.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
-
+  await getSession(); 
   return null;
 };
 

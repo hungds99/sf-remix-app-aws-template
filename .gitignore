@@ -13,3 +13,6 @@ database.sqlite
 .env
 package-lock.json
 yarn.lock
+
+# sst
+.sst

@@ -3,11 +3,15 @@ import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { login } from "../../shopify.server";
 import indexStyles from "./style.css";
+import { getSession } from "~/sessions.server";
 
 export const links = () => [{ rel: "stylesheet", href: indexStyles }];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
+
+  await getSession();
+  
 
   if (url.searchParams.get("shop")) {
     throw redirect(`/app?${url.searchParams.toString()}`);

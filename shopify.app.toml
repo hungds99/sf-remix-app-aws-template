@@ -2,7 +2,7 @@
 
 name = "sf-remix-app-aws-template"
 client_id = "a5cd51a3cf53166a6ab580a51ec06ffb"
-application_url = "https://example.com"
+application_url = "https://configuring-efforts-genes-jokes.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -10,10 +10,18 @@ embedded = true
 scopes = "write_products"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://configuring-efforts-genes-jokes.trycloudflare.com/auth/callback",
+  "https://configuring-efforts-genes-jokes.trycloudflare.com/auth/shopify/callback",
+  "https://configuring-efforts-genes-jokes.trycloudflare.com/api/auth/callback"
+]
 
 [webhooks]
 api_version = "2024-01"
 
 [pos]
 embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "store-demo-2023-partner.myshopify.com"
