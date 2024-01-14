@@ -35,9 +35,15 @@ export default {
           SHOPIFY_API_KEY: process.env.SHOPIFY_API_KEY!,
           SHOPIFY_API_SECRET: process.env.SHOPIFY_API_SECRET!,
           SCOPES: process.env.SCOPES!,
-          HOST: process.env.HOST!,
-        }
+          HOST: process.env.HOST || "https://d52r02gcc13ea.cloudfront.net",
+          SHOPIFY_APP_URL: "https://d52r02gcc13ea.cloudfront.net"
+        },
       });
+
+      site.props.environment = {
+        ...site.props.environment,
+        SHOPIFY_APP_URL: site.url || "https://d52r02gcc13ea.cloudfront.net",
+      };
 
       stack.addOutputs({
         url: site.url,
@@ -45,8 +51,8 @@ export default {
 
       return {
         site,
-        shopSessionsTable
-      }
+        shopSessionsTable,
+      };
     });
 
     // Remove all resources when non-prod stages are removed

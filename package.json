@@ -7,6 +7,7 @@
     "build": "tsc && remix build",
     "dev": "shopify app dev",
     "sst:dev": "sst dev",
+    "sst:deploy": "sst deploy",
     "config:link": "shopify app config link",
     "config:push": "shopify app config push",
     "generate": "shopify app generate",

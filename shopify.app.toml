@@ -2,7 +2,7 @@
 
 name = "sf-remix-app-aws-template"
 client_id = "a5cd51a3cf53166a6ab580a51ec06ffb"
-application_url = "https://configuring-efforts-genes-jokes.trycloudflare.com"
+application_url = "https://gourmet-assignment-yield-sec.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://configuring-efforts-genes-jokes.trycloudflare.com/auth/callback",
-  "https://configuring-efforts-genes-jokes.trycloudflare.com/auth/shopify/callback",
-  "https://configuring-efforts-genes-jokes.trycloudflare.com/api/auth/callback"
+  "https://gourmet-assignment-yield-sec.trycloudflare.com/auth/callback",
+  "https://gourmet-assignment-yield-sec.trycloudflare.com/auth/shopify/callback",
+  "https://gourmet-assignment-yield-sec.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
