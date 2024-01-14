@@ -6,7 +6,7 @@ import {
   type EntryContext,
 } from "@remix-run/node";
 import { isbot } from "isbot";
-import { addDocumentResponseHeaders } from "./shopify.server";
+import { addDocumentResponseHeaders } from "./shopify.server.js";
 
 const ABORT_DELAY = 5000;
 

@@ -1,9 +1,9 @@
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
-import { login } from "../../shopify.server";
+import { login } from "../../shopify.server.js";
 import indexStyles from "./style.css";
-import { getSession } from "~/sessions.server";
+import { getSession } from "~/sessions.server.js";
 
 export const links = () => [{ rel: "stylesheet", href: indexStyles }];
 
