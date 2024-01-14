@@ -1,12 +1,13 @@
+import { restResources } from "@shopify/shopify-api/rest/admin/2024-01";
 import "@shopify/shopify-app-remix/adapters/node";
 import {
   AppDistribution,
   DeliveryMethod,
-  shopifyApp,
   LATEST_API_VERSION,
+  shopifyApp,
 } from "@shopify/shopify-app-remix/server";
-import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
-import { restResources } from "@shopify/shopify-api/rest/admin/2024-01";
+import { DynamoDBSessionStorage } from "@shopify/shopify-app-session-storage-dynamodb";
+import { Table } from "sst/node/table";
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
@@ -15,7 +16,10 @@ const shopify = shopifyApp({
   scopes: process.env.SCOPES?.split(","),
   appUrl: process.env.SHOPIFY_APP_URL || "",
   authPathPrefix: "/auth",
-  sessionStorage: new PrismaSessionStorage(prismaClient),
+  sessionStorage: new DynamoDBSessionStorage({
+    sessionTableName: Table.ShopSessions.tableName,
+    shopIndexName: "shopIndex",
+  }),
   distribution: AppDistribution.AppStore,
   restResources,
   webhooks: {

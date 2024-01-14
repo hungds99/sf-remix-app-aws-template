@@ -4,7 +4,6 @@ package.json
 .vscode
 build
 node_modules
-prisma
 public
 shopify-app-remix
 .github

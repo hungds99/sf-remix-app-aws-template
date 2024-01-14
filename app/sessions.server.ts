@@ -1,21 +1,13 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { Table } from "sst/node/table";
-
-const db = DynamoDBDocumentClient.from(
-    new DynamoDBClient({
-    })
-  );
+import dynamodbClient from "./db.server.js";
 
 export async function getSession() {
   try {
-    console.log("table name: ", Table.ShopSessions.tableName)
-
-    // console.log("data", db);
     const scan = new ScanCommand({
       TableName: Table.ShopSessions.tableName,
     });
-    const results = await db.send(scan);
+    const results = await dynamodbClient.send(scan);
 
     console.log("results", results);
   } catch (error) {

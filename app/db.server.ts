@@ -1,15 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
-declare global {
-  var prismaClient: PrismaClient;
-}
+const dynamodbClient = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 
-const prismaClient: PrismaClient = global.prismaClient || new PrismaClient();
-
-if (process.env.NODE_ENV !== "production") {
-  if (!global.prismaClient) {
-    global.prismaClient = new PrismaClient();
-  }
-}
-
-export default prismaClient;
+export default dynamodbClient;

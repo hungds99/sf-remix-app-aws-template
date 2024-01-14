@@ -6,9 +6,6 @@ node_modules
 /public/build/
 /public/_dev
 /app/public/build
-/prisma/dev.sqlite
-/prisma/dev.sqlite-journal
-database.sqlite
 
 .env
 package-lock.json
