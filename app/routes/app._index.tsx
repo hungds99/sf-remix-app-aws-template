@@ -15,7 +15,7 @@ import {
 } from "@shopify/polaris";
 import { useEffect } from "react";
 import { authenticate } from "../shopify.server.js";
-import { getSession } from "~/sessions.server.js";
+import { getSession } from "../sessions.server.js";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);

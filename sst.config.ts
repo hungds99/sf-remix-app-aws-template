@@ -1,5 +1,5 @@
 import type { SSTConfig } from "sst";
-import { RemixSite, Table } from "sst/constructs";
+import { Config, RemixSite, Table } from "sst/constructs";
 
 export default {
   config(_input) {
@@ -11,7 +11,7 @@ export default {
   stacks(app) {
     // Remix Site
     app.stack(function Site({ stack }) {
-      // Shop Sessions
+      // Shop Sessions Table
       const shopSessionsTable = new Table(stack, "ShopSessions", {
         fields: {
           id: "string",
@@ -29,21 +29,26 @@ export default {
         },
       });
 
-      const site = new RemixSite(stack, "site", {
-        bind: [shopSessionsTable],
-        environment: {
-          SHOPIFY_API_KEY: process.env.SHOPIFY_API_KEY!,
-          SHOPIFY_API_SECRET: process.env.SHOPIFY_API_SECRET!,
-          SCOPES: process.env.SCOPES!,
-          HOST: process.env.HOST || "https://d52r02gcc13ea.cloudfront.net",
-          SHOPIFY_APP_URL: "https://d52r02gcc13ea.cloudfront.net"
-        },
+      // Configure SSM environment variables
+      const SHOPIFY_API_KEY = new Config.Secret(stack, "SHOPIFY_API_KEY");
+      const SHOPIFY_API_SECRET = new Config.Secret(stack, "SHOPIFY_API_SECRET");
+      const SHOPIFY_APP_URL = new Config.Parameter(stack, "SHOPIFY_APP_URL", {
+        value: "https://d2cfbqdrlpjx23.cloudfront.net",
+      });
+      const SCOPES = new Config.Parameter(stack, "SCOPES", {
+        value:
+          "write_payment_customizations,write_delivery_customizations,read_customers,read_products,read_shipping,write_discounts,read_discounts,read_metaobjects,read_delivery_customizations",
       });
 
-      site.props.environment = {
-        ...site.props.environment,
-        SHOPIFY_APP_URL: site.url || "https://d52r02gcc13ea.cloudfront.net",
-      };
+      const site = new RemixSite(stack, "site", {
+        bind: [
+          shopSessionsTable,
+          SHOPIFY_API_KEY,
+          SHOPIFY_API_SECRET,
+          SHOPIFY_APP_URL,
+          SCOPES,
+        ],
+      });
 
       stack.addOutputs({
         url: site.url,
