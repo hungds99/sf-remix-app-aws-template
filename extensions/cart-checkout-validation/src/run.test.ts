@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { run } from './run';
-import { FunctionRunResult } from '../generated/api';
+import type { FunctionRunResult } from '../generated/api';
 
 describe('cart checkout validation function', () => {
   it('returns an error when quantity exceeds one', () => {

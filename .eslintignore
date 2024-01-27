@@ -6,3 +6,10 @@ shopify-app-remix
 .shopify
 sst-env.d.ts
 .sst
+.github
+tmp
+*.yml
+coverage
+README.md
+dist
+generated

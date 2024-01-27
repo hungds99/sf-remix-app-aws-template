@@ -21,12 +21,11 @@
     "deploy": "shopify app deploy",
     "config:use": "shopify app config use",
     "env": "shopify app env",
-    "start": "remix-serve build/index.js",
-    "docker-start": "npm run setup && npm run start",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "shopify": "shopify",
     "graphql-codegen": "graphql-codegen",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check-format": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.490.0",
@@ -46,7 +45,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@remix-run/eslint-config": "^2.0.0",
+    "@remix-run/eslint-config": "^2.5.1",
     "@shopify/api-codegen-preset": "^0.0.1",
     "@shopify/app-bridge-types": "^0.0.3",
     "@types/eslint": "^8.56.2",
