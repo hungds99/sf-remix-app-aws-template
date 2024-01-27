@@ -5,3 +5,4 @@ shopify-app-remix
 */*.yml
 .shopify
 sst-env.d.ts
+.sst

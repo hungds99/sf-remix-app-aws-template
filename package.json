@@ -49,13 +49,13 @@
     "@remix-run/eslint-config": "^2.0.0",
     "@shopify/api-codegen-preset": "^0.0.1",
     "@shopify/app-bridge-types": "^0.0.3",
-    "@types/eslint": "^8.40.0",
+    "@types/eslint": "^8.56.2",
     "@types/node": "^20.6.3",
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.14",
     "aws-cdk-lib": "2.110.1",
     "constructs": "10.3.0",
-    "eslint": "^8.42.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^8.10.0",
     "husky": "^9.0.6",
     "lint-staged": "^15.2.0",
@@ -70,6 +70,7 @@
     "@shopify/plugin-cloudflare"
   ],
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier. --check --ignore-unknown",
+    "*.{js,ts}": "eslint --max-warnings 0 ."
   }
 }
