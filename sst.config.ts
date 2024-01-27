@@ -37,7 +37,7 @@ export default {
         value: 'write_products',
       });
       const APP_URL = new Config.Parameter(stack, 'APP_URL', {
-        value: 'https://capability-illustrations-workforce-objective.trycloudflare.com',
+        value: 'https://7555-14-241-123-88.ngrok-free.app',
       });
 
       const site = new RemixSite(stack, 'site', {

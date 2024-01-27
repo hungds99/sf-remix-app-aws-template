@@ -12,7 +12,7 @@ function Extension() {
   const { extension } = useApi();
 
   return (
-    <Banner title='checkout-ui-customization'>
+    <Banner title='Checkout UI Customization'>
       {translate('welcome', { target: extension.target })}
     </Banner>
   );

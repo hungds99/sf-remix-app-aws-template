@@ -4,7 +4,7 @@ export function run(input: RunInput): FunctionRunResult {
   const errors: FunctionError[] = input.cart.lines
     .filter(({ quantity }) => quantity > 1)
     .map(() => ({
-      localizedMessage: 'Not possible to order more than one of each',
+      localizedMessage: 'Not possible to order more than one of each product quantity',
       target: 'cart',
     }));
 
