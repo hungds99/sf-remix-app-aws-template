@@ -1,4 +1,5 @@
-package.json
+# Ignore artifacts:
+package-lock.json
 .cache
 .shadowenv.d
 .vscode
@@ -10,3 +11,9 @@ shopify-app-remix
 tmp
 *.yml
 .shopify
+coverage
+.sst
+README.md
+dist
+generated
+

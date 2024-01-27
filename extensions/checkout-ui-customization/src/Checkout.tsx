@@ -3,11 +3,9 @@ import {
   useApi,
   useTranslate,
   reactExtension,
-} from "@shopify/ui-extensions-react/checkout";
+} from '@shopify/ui-extensions-react/checkout';
 
-export default reactExtension("purchase.checkout.block.render", () => (
-  <Extension />
-));
+export default reactExtension('purchase.checkout.block.render', () => <Extension />);
 
 function Extension() {
   const translate = useTranslate();
@@ -15,7 +13,7 @@ function Extension() {
 
   return (
     <Banner title="checkout-ui-customization">
-      {translate("welcome", { target: extension.target })}
+      {translate('welcome', { target: extension.target })}
     </Banner>
   );
 }

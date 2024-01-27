@@ -1,13 +1,13 @@
-import type { HeadersFunction, LoaderFunctionArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
-import polarisStyles from "@shopify/polaris/build/esm/styles.css";
-import { AppProvider } from "@shopify/shopify-app-remix/react";
-import { boundary } from "@shopify/shopify-app-remix/server";
-import { Config } from "sst/node/config";
-import { authenticate } from "../shopify.server.js";
+import type { HeadersFunction, LoaderFunctionArgs } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { Link, Outlet, useLoaderData, useRouteError } from '@remix-run/react';
+import polarisStyles from '@shopify/polaris/build/esm/styles.css';
+import { AppProvider } from '@shopify/shopify-app-remix/react';
+import { boundary } from '@shopify/shopify-app-remix/server';
+import { Config } from 'sst/node/config';
+import { authenticate } from '../shopify.server.js';
 
-export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
+export const links = () => [{ rel: 'stylesheet', href: polarisStyles }];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
@@ -36,6 +36,6 @@ export function ErrorBoundary() {
   return boundary.error(useRouteError());
 }
 
-export const headers: HeadersFunction = (headersArgs) => {
+export const headers: HeadersFunction = headersArgs => {
   return boundary.headers(headersArgs);
 };

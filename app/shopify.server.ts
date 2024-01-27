@@ -1,32 +1,32 @@
-import { restResources } from "@shopify/shopify-api/rest/admin/2024-01";
-import "@shopify/shopify-app-remix/adapters/node";
+import { restResources } from '@shopify/shopify-api/rest/admin/2024-01';
+import '@shopify/shopify-app-remix/adapters/node';
 import {
   AppDistribution,
   DeliveryMethod,
   LATEST_API_VERSION,
   shopifyApp,
-} from "@shopify/shopify-app-remix/server";
-import { DynamoDBSessionStorage } from "@shopify/shopify-app-session-storage-dynamodb";
-import { Config } from "sst/node/config";
-import { Table } from "sst/node/table";
+} from '@shopify/shopify-app-remix/server';
+import { DynamoDBSessionStorage } from '@shopify/shopify-app-session-storage-dynamodb';
+import { Config } from 'sst/node/config';
+import { Table } from 'sst/node/table';
 
 const shopify = shopifyApp({
   apiKey: Config.SHOPIFY_API_KEY,
   apiSecretKey: Config.SHOPIFY_API_SECRET,
   apiVersion: LATEST_API_VERSION,
-  scopes: Config.SHOPIFY_SCOPES?.split(","),
+  scopes: Config.SHOPIFY_SCOPES?.split(','),
   appUrl: Config.APP_URL,
-  authPathPrefix: "/auth",
+  authPathPrefix: '/auth',
   sessionStorage: new DynamoDBSessionStorage({
     sessionTableName: Table.ShopSessions.tableName,
-    shopIndexName: "shopIndex",
+    shopIndexName: 'shopIndex',
   }),
   distribution: AppDistribution.AppStore,
   restResources,
   webhooks: {
     APP_UNINSTALLED: {
       deliveryMethod: DeliveryMethod.Http,
-      callbackUrl: "/webhooks",
+      callbackUrl: '/webhooks',
     },
   },
   hooks: {

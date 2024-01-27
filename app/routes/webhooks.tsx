@@ -1,8 +1,8 @@
-import { GetCommand } from "@aws-sdk/lib-dynamodb";
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { Table } from "sst/node/table";
-import dynamodbClient from "../db.server.js";
-import { authenticate } from "../shopify.server.js";
+import { GetCommand } from '@aws-sdk/lib-dynamodb';
+import type { ActionFunctionArgs } from '@remix-run/node';
+import { Table } from 'sst/node/table';
+import dynamodbClient from '../db.server.js';
+import { authenticate } from '../shopify.server.js';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { topic, session, admin } = await authenticate.webhook(request);
@@ -13,7 +13,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
 
   switch (topic) {
-    case "APP_UNINSTALLED":
+    case 'APP_UNINSTALLED':
       if (session) {
         const sessionCommand = new GetCommand({
           TableName: Table.ShopSessions.tableName,
@@ -25,11 +25,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       }
 
       break;
-    case "CUSTOMERS_DATA_REQUEST":
-    case "CUSTOMERS_REDACT":
-    case "SHOP_REDACT":
+    case 'CUSTOMERS_DATA_REQUEST':
+    case 'CUSTOMERS_REDACT':
+    case 'SHOP_REDACT':
     default:
-      throw new Response("Unhandled webhook topic", { status: 404 });
+      throw new Response('Unhandled webhook topic', { status: 404 });
   }
 
   throw new Response();

@@ -1,13 +1,4 @@
-import {
-  Box,
-  Card,
-  Layout,
-  Link,
-  List,
-  Page,
-  Text,
-  BlockStack,
-} from "@shopify/polaris";
+import { Box, Card, Layout, Link, List, Page, Text, BlockStack } from '@shopify/polaris';
 
 export default function AdditionalPage() {
   return (
@@ -18,9 +9,8 @@ export default function AdditionalPage() {
           <Card>
             <BlockStack gap="300">
               <Text as="p" variant="bodyMd">
-                The app template comes with an additional page which
-                demonstrates how to create multiple pages within app navigation
-                using{" "}
+                The app template comes with an additional page which demonstrates how to create
+                multiple pages within app navigation using{' '}
                 <Link
                   url="https://shopify.dev/docs/apps/tools/app-bridge"
                   target="_blank"
@@ -31,10 +21,9 @@ export default function AdditionalPage() {
                 .
               </Text>
               <Text as="p" variant="bodyMd">
-                To create your own page and have it show up in the app
-                navigation, add a page inside <Code>app/routes</Code>, and a
-                link to it in the <Code>&lt;ui-nav-menu&gt;</Code> component
-                found in <Code>app/routes/app.jsx</Code>.
+                To create your own page and have it show up in the app navigation, add a page inside{' '}
+                <Code>app/routes</Code>, and a link to it in the <Code>&lt;ui-nav-menu&gt;</Code>{' '}
+                component found in <Code>app/routes/app.jsx</Code>.
               </Text>
             </BlockStack>
           </Card>

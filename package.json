@@ -25,7 +25,8 @@
     "docker-start": "npm run setup && npm run start",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "shopify": "shopify",
-    "graphql-codegen": "graphql-codegen"
+    "graphql-codegen": "graphql-codegen",
+    "prepare": "husky"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.490.0",
@@ -55,7 +56,9 @@
     "aws-cdk-lib": "2.110.1",
     "constructs": "10.3.0",
     "eslint": "^8.42.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^8.10.0",
+    "husky": "^9.0.6",
+    "lint-staged": "^15.2.0",
     "prettier": "2.8.8",
     "sst": "2.39.5",
     "typescript": "^5.2.2"
@@ -65,5 +68,8 @@
   ],
   "trustedDependencies": [
     "@shopify/plugin-cloudflare"
-  ]
+  ],
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
 }

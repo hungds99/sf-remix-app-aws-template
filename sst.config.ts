@@ -1,54 +1,47 @@
-import type { SSTConfig } from "sst";
-import { Config, RemixSite, Table } from "sst/constructs";
+import type { SSTConfig } from 'sst';
+import { Config, RemixSite, Table } from 'sst/constructs';
 
 export default {
   config(_input) {
     return {
-      name: "sf-remix-app-aws-template",
-      region: "ap-southeast-1",
-      stage: "local",
+      name: 'sf-remix-app-aws-template',
+      region: 'ap-southeast-1',
+      stage: 'local',
     };
   },
   stacks(app) {
     // Remix Site
     app.stack(function Site({ stack }) {
       // Shop Sessions Table
-      const shopSessionsTable = new Table(stack, "ShopSessions", {
+      const shopSessionsTable = new Table(stack, 'ShopSessions', {
         fields: {
-          id: "string",
-          shop: "string",
-          state: "string",
-          isOnline: "string",
-          scope: "string",
-          expires: "string",
-          accessToken: "string",
-          userId: "string",
+          id: 'string',
+          shop: 'string',
+          state: 'string',
+          isOnline: 'string',
+          scope: 'string',
+          expires: 'string',
+          accessToken: 'string',
+          userId: 'string',
         },
-        primaryIndex: { partitionKey: "id" },
+        primaryIndex: { partitionKey: 'id' },
         globalIndexes: {
-          shopIndex: { partitionKey: "shop" },
+          shopIndex: { partitionKey: 'shop' },
         },
       });
 
       // Configure SSM environment variables
-      const SHOPIFY_API_KEY = new Config.Secret(stack, "SHOPIFY_API_KEY");
-      const SHOPIFY_API_SECRET = new Config.Secret(stack, "SHOPIFY_API_SECRET");
-      const SHOPIFY_SCOPES = new Config.Parameter(stack, "SHOPIFY_SCOPES", {
-        value: "write_products",
+      const SHOPIFY_API_KEY = new Config.Secret(stack, 'SHOPIFY_API_KEY');
+      const SHOPIFY_API_SECRET = new Config.Secret(stack, 'SHOPIFY_API_SECRET');
+      const SHOPIFY_SCOPES = new Config.Parameter(stack, 'SHOPIFY_SCOPES', {
+        value: 'write_products',
       });
-      const APP_URL = new Config.Parameter(stack, "APP_URL", {
-        value:
-          "https://capability-illustrations-workforce-objective.trycloudflare.com",
+      const APP_URL = new Config.Parameter(stack, 'APP_URL', {
+        value: 'https://capability-illustrations-workforce-objective.trycloudflare.com',
       });
 
-      const site = new RemixSite(stack, "site", {
-        bind: [
-          shopSessionsTable,
-          SHOPIFY_API_KEY,
-          SHOPIFY_API_SECRET,
-          SHOPIFY_SCOPES,
-          APP_URL,
-        ],
+      const site = new RemixSite(stack, 'site', {
+        bind: [shopSessionsTable, SHOPIFY_API_KEY, SHOPIFY_API_SECRET, SHOPIFY_SCOPES, APP_URL],
       });
 
       stack.addOutputs({
@@ -59,7 +52,7 @@ export default {
 
     // Remove all resources when non-prod stages are removed
     // if (app.stage !== "prod") {
-    app.setDefaultRemovalPolicy("destroy");
+    app.setDefaultRemovalPolicy('destroy');
     // }
   },
 } satisfies SSTConfig;
