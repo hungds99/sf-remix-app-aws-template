@@ -70,7 +70,7 @@
     "@shopify/plugin-cloudflare"
   ],
   "lint-staged": {
-    "**/*": "prettier. --check --ignore-unknown",
-    "*.{js,ts}": "eslint --max-warnings 0 ."
+    "**/*": "prettier . --check --ignore-unknown",
+    "*.{js,ts}": "eslint . --max-warnings 0"
   }
 }
