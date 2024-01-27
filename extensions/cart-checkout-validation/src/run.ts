@@ -13,6 +13,6 @@ export function run(input: RunInput): FunctionRunResult {
     }));
 
   return {
-    errors
-  }
-};
+    errors,
+  };
+}

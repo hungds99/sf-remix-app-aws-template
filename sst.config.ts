@@ -6,6 +6,7 @@ export default {
     return {
       name: "sf-remix-app-aws-template",
       region: "ap-southeast-1",
+      stage: "local",
     };
   },
   stacks(app) {
@@ -32,12 +33,12 @@ export default {
       // Configure SSM environment variables
       const SHOPIFY_API_KEY = new Config.Secret(stack, "SHOPIFY_API_KEY");
       const SHOPIFY_API_SECRET = new Config.Secret(stack, "SHOPIFY_API_SECRET");
-      const SHOPIFY_APP_URL = new Config.Parameter(stack, "SHOPIFY_APP_URL", {
-        value: "https://d2cfbqdrlpjx23.cloudfront.net",
+      const SHOPIFY_SCOPES = new Config.Parameter(stack, "SHOPIFY_SCOPES", {
+        value: "write_products",
       });
-      const SCOPES = new Config.Parameter(stack, "SCOPES", {
+      const APP_URL = new Config.Parameter(stack, "APP_URL", {
         value:
-          "write_payment_customizations,write_delivery_customizations,read_customers,read_products,read_shipping,write_discounts,read_discounts,read_metaobjects,read_delivery_customizations",
+          "https://capability-illustrations-workforce-objective.trycloudflare.com",
       });
 
       const site = new RemixSite(stack, "site", {
@@ -45,24 +46,20 @@ export default {
           shopSessionsTable,
           SHOPIFY_API_KEY,
           SHOPIFY_API_SECRET,
-          SHOPIFY_APP_URL,
-          SCOPES,
+          SHOPIFY_SCOPES,
+          APP_URL,
         ],
       });
 
       stack.addOutputs({
         url: site.url,
+        table: shopSessionsTable.tableName,
       });
-
-      return {
-        site,
-        shopSessionsTable,
-      };
     });
 
     // Remove all resources when non-prod stages are removed
-    if (app.stage !== "prod") {
-      app.setDefaultRemovalPolicy("destroy");
-    }
+    // if (app.stage !== "prod") {
+    app.setDefaultRemovalPolicy("destroy");
+    // }
   },
 } satisfies SSTConfig;

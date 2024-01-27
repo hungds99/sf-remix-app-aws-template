@@ -7,9 +7,12 @@ node_modules
 /public/_dev
 /app/public/build
 
-.env
+.env.*
 package-lock.json
 yarn.lock
 
 # sst
 .sst
+
+# Shopify
+shopify.app.*.toml

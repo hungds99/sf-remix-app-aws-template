@@ -7,14 +7,15 @@ import {
   shopifyApp,
 } from "@shopify/shopify-app-remix/server";
 import { DynamoDBSessionStorage } from "@shopify/shopify-app-session-storage-dynamodb";
+import { Config } from "sst/node/config";
 import { Table } from "sst/node/table";
 
 const shopify = shopifyApp({
-  apiKey: process.env.SHOPIFY_API_KEY,
-  apiSecretKey: process.env.SHOPIFY_API_SECRET || "",
+  apiKey: Config.SHOPIFY_API_KEY,
+  apiSecretKey: Config.SHOPIFY_API_SECRET,
   apiVersion: LATEST_API_VERSION,
-  scopes: process.env.SCOPES?.split(","),
-  appUrl: process.env.SHOPIFY_APP_URL || "",
+  scopes: Config.SHOPIFY_SCOPES?.split(","),
+  appUrl: Config.APP_URL,
   authPathPrefix: "/auth",
   sessionStorage: new DynamoDBSessionStorage({
     sessionTableName: Table.ShopSessions.tableName,

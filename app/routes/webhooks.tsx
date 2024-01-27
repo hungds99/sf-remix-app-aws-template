@@ -1,4 +1,7 @@
+import { GetCommand } from "@aws-sdk/lib-dynamodb";
 import type { ActionFunctionArgs } from "@remix-run/node";
+import { Table } from "sst/node/table";
+import dynamodbClient from "../db.server.js";
 import { authenticate } from "../shopify.server.js";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -11,7 +14,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   switch (topic) {
     case "APP_UNINSTALLED":
-      if (session) {};
+      if (session) {
+        const sessionCommand = new GetCommand({
+          TableName: Table.ShopSessions.tableName,
+          Key: {
+            id: session.id,
+          },
+        });
+        await dynamodbClient.send(sessionCommand);
+      }
 
       break;
     case "CUSTOMERS_DATA_REQUEST":
